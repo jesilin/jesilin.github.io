@@ -17,12 +17,12 @@
       <button onclick='hasSA()'>Call document.hasStorageAccess()</button><br />
       <p>Return value of hasStorageAccess():</p><pre id='has_storage_access'></pre><br />
 
-      <h3>window.open</h3>
-      <button onclick='openWindow()'>Call window.open()</button><br />
+      <h3>window.open same-origin</h3>
+      <button onclick='openWindowSameOrigin()'>Call window.open()</button><br />
       <p>Return value of Window.Open():</p><pre id='window_open'></pre><br />
 
-      <h3>window.open2(open itisatracker)</h3>
-      <button onclick='openWindow2()'>Call window.open()</button><br />
+      <h3>window.open cross-origin</h3>
+      <button onclick='openWindowCrossOrigin()'>Call window.open()</button><br />
       <p>Return value of Window.Open():</p><pre id='window_open2'></pre><br />
 
       <script>
@@ -51,11 +51,11 @@
             (reason) => {result.innerHTML = 'promise rejected for reason' + reason}
           );
         }
-        function openWindow() {
+        function openWindowSameOrigin() {
           window.open("https://jesilin.github.io/index.html");
         }
-        function openWindow2() {
-          window.open("https://itisatracker.org/");
+        function openWindowCrossOrigin() {
+          window.open("https://dimidl.github.io/index.html");
         }
       </script>
     </body>
