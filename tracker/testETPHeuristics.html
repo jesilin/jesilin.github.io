@@ -6,9 +6,9 @@
     <body>
       <h1>I am at jesilin.github.io<h1>
       <h3>Cookie setting and getting</h3>
-      <button onclick='setAndGetCookie()'>Set and Get cookie via document.cookie</button><br />
-      <p>Trying to set cookie with value:</p><pre id='cookie_set'></pre>
-      <p>Your current non-HTTPOnly cookies are:</p><pre id='cookie_read'></pre>
+      <button onclick='setAndGetLocalStorage()'>Set and Get local storage</button><br />
+      <p>Trying to set local storage with value:</p><pre id='lss'></pre>
+      <p>get local storage :</p><pre id='lsg'></pre>
 
       <h3>document.requestStorageAccess</h3>
       <button onclick='requestSA()'>Call document.requestStorageAccess()</button><br />
@@ -18,25 +18,20 @@
       <button onclick='hasSA()'>Call document.hasStorageAccess()</button><br />
       <p>Return value of hasStorageAccess():</p><pre id='has_storage_access'></pre><br />
 
-      <h3>window.open same-origin</h3>
-      <button onclick='openWindowSameOrigin()'>Call window.open()</button><br />
+      <h3>window.open</h3>
+      <button onclick='openWindow()'>Call window.open()</button><br />
       <p>Return value of Window.Open():</p><pre id='window_open'></pre><br />
 
-      <h3>window.open cross-origin</h3>
-      <button onclick='openWindowCrossOrigin()'>Call window.open()</button><br />
-      <p>Return value of Window.Open():</p><pre id='window_open2'></pre><br />
-
       <script>
-        function setAndGetCookie() {
-          // Try to set a cookie
+        function setAndGetLocalStorage() {
+          // Try to set local storage
           var randVal = Math.random();
-          var set = document.getElementById('cookie_set');
+          var set = document.getElementById('lss');
           set.innerHTML = randVal;
-          document.cookie = 'testPageCookie='+randVal+';SameSite=None; Secure'
-          // Get a cookie
-          var get = document.getElementById('cookie_read');
-          var cookies = document.cookie;
-          get.innerHTML = cookies;
+          window.localStorage.setItem('foo', randVal);
+          // Get local storage
+          var get = document.getElementById('lsg');
+          get.innerHTML = window.localStorage.getItem('foo');;
         }
         function requestSA() {
           var result = document.getElementById('request_storage_access');
@@ -52,11 +47,8 @@
             (reason) => {result.innerHTML = 'promise rejected for reason' + reason}
           );
         }
-        function openWindowSameOrigin() {
+        function openWindow() {
           window.open("https://jesilin.github.io/index.html");
-        }
-        function openWindowCrossOrigin() {
-          window.open("https://dimidl.github.io/index.html");
         }
       </script>
     </body>
